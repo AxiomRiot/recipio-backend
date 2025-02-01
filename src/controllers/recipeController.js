@@ -22,7 +22,7 @@ const createRecipeController = async (req, res) => {
 
 const readRecipeController = async (req, res) => {
 
-  const recipeId = req.params.id;
+  const recipeId = req.params.recipeId;
   
   if(!recipeId) {
     return res.status(400).send('Recipe ID is required');
@@ -42,7 +42,7 @@ const readRecipeController = async (req, res) => {
 
 const updateRecipeController = async (req, res) => {
   
-  const recipeId = req.params.id;
+  const recipeId = req.params.recipeId;
   const updates = req.body;
   
   if(!recipeId || !updates) {
@@ -63,7 +63,7 @@ const updateRecipeController = async (req, res) => {
 
 const deleteRecipeController = async (req, res) => {
   
-  const recipeId = req.params.id;
+  const recipeId = req.params.recipeId;
 
   if(!recipeId) {
     return res.status(400).send('Recipe ID is required');

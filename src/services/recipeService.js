@@ -5,7 +5,7 @@ const createRecipe = async (recipeUrl) => {
 
   try {
 
-    const scrapedRecipe = await getRecipe(req.body.url);
+    const scrapedRecipe = await getRecipe(recipeUrl);
 
     const recipe = new Recipe(scrapedRecipe);
     await recipe.save();
@@ -40,8 +40,9 @@ const readRecipe = async (recipeId) => {
 
 const updateRecipe = async (recipeId, updates) => {
   
+  const updateKeys = Object.keys(updates)
   const allowedUpdates = ['title', 'description', 'servings', 'duration', 'ingredients', 'steps'];
-  const isAllowed = updates.every((update) => allowedUpdates.includes(update));
+  const isAllowed = updateKeys.every((update) => allowedUpdates.includes(update));
 
   if(!isAllowed) {
     throw new Error('Invalid updates!');
@@ -49,7 +50,7 @@ const updateRecipe = async (recipeId, updates) => {
 
   try {
 
-    const updatedRecipe = Recipe.findByIdAndUpdate(recipeId, updates);
+    const updatedRecipe = Recipe.findByIdAndUpdate(recipeId, updates, { new: true });
 
     if(!updatedRecipe) {
       throw new Error(`Recipe with given id ${recipeId} not found; update failed!`);
