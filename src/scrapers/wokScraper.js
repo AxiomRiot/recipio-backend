@@ -21,6 +21,7 @@ async function scrapeWebsite(url) {
       description,
       servings,
       duration,
+      url,
       ingredients : [],
       steps: []
     };
