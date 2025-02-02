@@ -1,4 +1,5 @@
 const Recipe = require('../models/recipeModel');
+const logger = require('../utils/loggers');
 const { getRecipe } = require('./recipeScraperService');
 
 const createRecipe = async (recipeUrl) => {
@@ -13,7 +14,7 @@ const createRecipe = async (recipeUrl) => {
     return recipe;
 
   } catch (error) {
-    console.error(`Error creating recipe: ${error.message}`);
+    logger.error(`Error creating recipe: ${error.message}`);
     throw error;
   }
 
@@ -32,7 +33,7 @@ const readRecipe = async (recipeId) => {
     return recipe;
 
   } catch (error) {
-    console.error(`Error reading recipe: ${error.message}`);
+    logger.error(`Error reading recipe: ${error.message}`);
     throw error;
   }
 
@@ -59,7 +60,7 @@ const updateRecipe = async (recipeId, updates) => {
     return updatedRecipe;
 
   } catch (error) {
-    console.error(`Error updating recipe: ${error.message}`);
+    logger.error(`Error updating recipe: ${error.message}`);
     throw error;
   }
 
@@ -78,7 +79,7 @@ const deleteRecipe = async (recipeId) => {
     return recipe;
 
   } catch (error) {
-    console.error(`Error deleting recipe: ${error.message}`);
+    logger.error(`Error deleting recipe: ${error.message}`);
     throw error;
   }
 

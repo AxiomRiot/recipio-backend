@@ -1,8 +1,9 @@
 const { urlScraperMap } = require('../config/config');
+const logger = require('../utils/loggers');
 
 const getScraperForUrl = (hostname) => {
   
-  console.log(`Received scrape request for site: ${hostname}`);
+  logger.info(`Received scrape request for site: ${hostname}`);
   return urlScraperMap[hostname] || null;
 }
 
@@ -15,7 +16,7 @@ const getRecipe = async (url) => {
     throw new Error(`No scraper found for url: ${url}`);
   }
 
-  console.log(`${hostname} is supported, parsing website for recipe data`);
+  logger.info(`${hostname} is supported, parsing website for recipe data`);
 
   return await scraper(url);
 }
