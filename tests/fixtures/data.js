@@ -13,7 +13,7 @@ const recipeOne = {
     minutes: "1"
   },
   ingredients: [
-    "Test Ingredient 1"
+    "Chicken Thighs", "Green Apple", "Almond Milk", "All-Purpose Flour", "Mango"
   ],
   steps: [
     "Test Step 1"
