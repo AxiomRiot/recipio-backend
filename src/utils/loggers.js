@@ -7,10 +7,18 @@ const logger = winston.createLogger({
     winston.format.colorize(),
     timestamp({format: 'YYYY-MM-DD HH:mm:ss', colorize: true}),
     printf((info) => `${info.timestamp} ${info.level}: ${info.message}`)
-  ),
-  transports: [
-    new winston.transports.Console()
-  ]
+  )
 });
+
+if( process.env.TRANSPORT === 'CONSOLE' ) {
+  // Log to console in development
+  logger.add(new winston.transports.Console());
+} else if ( process.env.TRANSPORT === 'FILE' ) {
+  logger.add(new winston.transports.File({
+    filename: 'logs/recipio.log',
+    maxsize: 5242880,
+    maxFiles: 5,
+  }));
+}
 
 module.exports = logger;

@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const logger = require('../utils/loggers');
 
 async function scrapeWebsite(url) {
   try {
@@ -37,7 +38,7 @@ async function scrapeWebsite(url) {
     return recipe;
 
   } catch ( error ) {
-    console.log(error);
+    logger.error(error);
   }
 }
 
