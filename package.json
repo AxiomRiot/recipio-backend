@@ -5,7 +5,8 @@
   "scripts": {
     "start": "env-cmd -f ./src/.env node src/app.js",
     "dev": "env-cmd -f ./src/.env nodemon src/index.js",
-    "test": "jest --watch --runInBand"
+    "test": "env-cmd -f ./tests/.env jest --watch --detectOpenHandles --runInBand",
+    "test:ci": "jest --ci --coverage"
   },
   "keywords": [],
   "author": "",
