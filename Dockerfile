@@ -1,5 +1,5 @@
 # Official Node JS runtime image
-FROM node:16
+FROM node:20.16.0
 
 # Port to run app on
 ENV PORT=3000
