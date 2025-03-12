@@ -21,6 +21,14 @@ jobs:
         run: npm install
       
       - name: Run Unit Tests
+        env:
+          PORT: ${{ secrets.PORT }}
+          TRANSPORT: CONSOLE
+          DBUSER: ${{ secrets.DBUSER }}
+          DBPASS: ${{ secrets.DBPASS }}
+          DBURL: ${{ secrets.DBURL }}
+          DBAPPNAME: ${{ secrets.DBURL }}
+          DBNAME: test
         run: npm test
 
       - name: Log Into Docker Hub
