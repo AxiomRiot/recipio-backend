@@ -14,4 +14,4 @@ COPY . .
 
 EXPOSE ${PORT}
 
-CMD sh -c 'trap "exit" TERM; while true; do sleep 1; done'
+CMD ["npm", "start"]
