@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "env-cmd -f ./src/.env node src/app.js",
+    "start": "node src/app.js",
     "dev": "env-cmd -f ./src/.env nodemon src/index.js",
     "test": "env-cmd -f ./tests/.env jest --watch --detectOpenHandles --runInBand",
     "test:ci": "jest --runInBand --coverage"
