@@ -1,5 +1,5 @@
 # Official Node JS runtime image
-FROM --platform=linux/arm64 node:11.15
+FROM --platform=linux/arm64/v8 node
 
 # Port to run app on
 ENV PORT=3000
