@@ -14,4 +14,4 @@ COPY . .
 
 EXPOSE ${PORT}
 
-CMD ["watch", "ls"]
+CMD ["tail", "-f /dev/null"]
