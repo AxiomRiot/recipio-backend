@@ -1,5 +1,5 @@
 # Official Node JS runtime image
-FROM --platform=linux/arm64/v8 node
+FROM --platform=linux/arm64/v8 node:current-bookworm
 
 # Port to run app on
 ENV PORT=3000
