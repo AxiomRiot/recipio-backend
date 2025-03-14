@@ -14,4 +14,4 @@ COPY . .
 
 EXPOSE ${PORT}
 
-CMD ["tail", "-f /dev/null"]
+CMD sh -c 'trap "exit" TERM; while true; do sleep 1; done'
