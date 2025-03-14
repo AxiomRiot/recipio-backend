@@ -2,7 +2,7 @@ const express = require('express');
 const recipeRouter = require('./routes/recipes');
 const groceryRouter = require('./routes/grocery');
 
-require('./data/mongoose');
+require('./data/db');
 
 const app = express();
 
