@@ -23,7 +23,7 @@ const RecipeSchema = new mongoose.Schema({
   },
   ingredients: [],
   steps: [],
-  picture: Buffer
+  image: Buffer
 });
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);

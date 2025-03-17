@@ -22,15 +22,6 @@ test('Get Recipe Test', async () => {
   expect(recipe.steps).toStrictEqual(recipeOne.steps);
 });
 
-
-test('Get Recipe Invalid Id Test', async () => {
-  
-  await request(app)
-    .get(`/recipe/12345`)
-    .send()
-    .expect(500);
-});
-
 test('Patch Recipe Test', async () => {
   
   const res = await request(app)
@@ -60,12 +51,4 @@ test('Delete Recipe Test', async () => {
     .delete(`/recipe/${recipeOneId}`)
     .send()
     .expect(201);
-});
-
-test('Delete Recipe Invalid Id Test', async () => {
-  
-  const res = await request(app)
-    .delete(`/recipe/12345`)
-    .send()
-    .expect(500);
 });

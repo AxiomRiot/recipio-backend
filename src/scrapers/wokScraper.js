@@ -1,6 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const logger = require('../utils/loggers');
+const downloadImage = require('../utils/image');
 
 async function scrapeWebsite(url) {
   try {
@@ -17,6 +18,9 @@ async function scrapeWebsite(url) {
       minutes: $('.wprm-recipe-total_time-minutes').text()
     }
 
+    const imageUrl = $('.wprm-recipe-image img').attr('data-lazy-src');
+    const image = await downloadImage(imageUrl, url);
+
     const recipe = {
       title,
       description,
@@ -24,7 +28,8 @@ async function scrapeWebsite(url) {
       duration,
       url,
       ingredients : [],
-      steps: []
+      steps: [],
+      image
     };
 
     $('ul.wprm-recipe-ingredients li').each((i, elem) => {
