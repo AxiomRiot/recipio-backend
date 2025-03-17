@@ -31,7 +31,10 @@ async function downloadImage(imageUrl, url) {
       responseType: 'arraybuffer',
     });
 
-    return Buffer.from(response.data);;
+    const buffer = Buffer.from(response.data);
+    const base64Image = buffer.toString('base64'); // Convert buffer to Base64 string
+
+    return base64Image;
   } catch (e) {
     logger.error(`Failed to download image: ${e}`);
   }
