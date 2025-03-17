@@ -5,6 +5,8 @@ const createRecipeController = async (req, res) => {
   
   const url = req.body.url;
 
+  logger.info("RecipeController received a create operation");
+
   if(!url) {
     return res.status(400).send('Recipe URL is required');
   }
@@ -19,10 +21,11 @@ const createRecipeController = async (req, res) => {
     logger.error(`Error creating recipe: ${error.message}`);
     res.status(500).send('Error creating recipe');
   }
-
 }
 
 const readRecipeController = async (req, res) => {
+
+  logger.info("RecipeController received a read operation");
 
   const recipeId = req.params.recipeId;
   
@@ -43,6 +46,8 @@ const readRecipeController = async (req, res) => {
 }
 
 const updateRecipeController = async (req, res) => {
+
+  logger.info("RecipeController received a update operation");
   
   const recipeId = req.params.recipeId;
   const updates = req.body;
@@ -64,6 +69,8 @@ const updateRecipeController = async (req, res) => {
 }
 
 const deleteRecipeController = async (req, res) => {
+
+  logger.info("RecipeController received a delete operation");
   
   const recipeId = req.params.recipeId;
 
