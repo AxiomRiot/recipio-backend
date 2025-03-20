@@ -40,7 +40,7 @@ const readRecipeController = async (req, res) => {
 
   } catch (error) {
     logger.error(`Error reading recipe: ${error.message}`);
-    res.status(500).send('Error reading recipe');
+    res.status(500).send(`Error reading recipe: ${error.message}`);
   }
 
 }
