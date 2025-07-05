@@ -16,10 +16,17 @@ const RecipeSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  duration: {
-    days: String,
-    hours: String,
-    minutes: String
+  time: {
+    prepTime: {
+      days: String,
+      hours: String,
+      minutes: String
+    },
+    cookTime: {
+      days: String,
+      hours: String,
+      minutes: String
+    }
   },
   ingredients: [],
   steps: [],

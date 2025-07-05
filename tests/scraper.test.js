@@ -23,6 +23,8 @@ test('New Wok of Life Recipe Post Test', async () => {
   expect(recipe.title).toBe(testWokRecipe.title);
   expect(recipe.description).toBe(testWokRecipe.description);
   expect(recipe.servings).toBe(testWokRecipe.servings);
+  expect(recipe.time.prepTime).toStrictEqual(testWokRecipe.time.prepTime);
+  expect(recipe.time.cookTime).toStrictEqual(testWokRecipe.time.cookTime);
   expect(recipe.ingredients).toStrictEqual(testWokRecipe.ingredients);
   expect(recipe.steps).toStrictEqual(testWokRecipe.steps);
 });

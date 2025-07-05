@@ -12,11 +12,17 @@ async function scrapeWebsite(url) {
     const description = $('.wprm-recipe-summary').text();
     const servings = $('.wprm-recipe-servings').text();
 
-    const duration = {
-      days: $('.wprm-recipe-total_time-days').text(),
-      hours: $('.wprm-recipe-total_time-hours').text(),
-      minutes: $('.wprm-recipe-total_time-minutes').text()
-    }
+    const prepTime = {
+      days: $('.wprm-recipe-prep_time-days').text(),
+      hours: $('.wprm-recipe-prep_time-hours').text(),
+      minutes: $('.wprm-recipe-prep_time-minutes').text()
+    };
+
+    const cookTime = {
+      days: $('.wprm-recipe-cook_time-days').text(),
+      hours: $('.wprm-recipe-cook_time-hours').text(),
+      minutes: $('.wprm-recipe-cook_time-minutes').text()
+    };
 
     const imageUrl = $('.wprm-recipe-image img').attr('data-lazy-src');
     const image = await downloadImage(imageUrl, url);
@@ -25,7 +31,10 @@ async function scrapeWebsite(url) {
       title,
       description,
       servings,
-      duration,
+      time: {
+        prepTime,
+        cookTime
+      },
       url,
       ingredients : [],
       steps: [],

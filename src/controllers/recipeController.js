@@ -19,7 +19,7 @@ const createRecipeController = async (req, res) => {
 
   } catch (error) {
     logger.error(`Error creating recipe: ${error.message}`);
-    res.status(500).send('Error creating recipe');
+    res.status(500).send(`Error creating recipe: ${error.message}`);
   }
 }
 
