@@ -30,7 +30,12 @@ const RecipeSchema = new mongoose.Schema({
   },
   ingredients: [],
   steps: [],
-  image: String
+  image: String,
+  lastMade: Date,
+  rating: {
+    type: Number,
+    default: 0
+  }
 });
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);
