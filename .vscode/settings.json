@@ -1,0 +1,9 @@
+{
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript"
+  ],
+  "eslint.options": {
+    "overrideConfigFile": "./eslint.config.mjs"
+  }
+}

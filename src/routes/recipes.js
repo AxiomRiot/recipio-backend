@@ -4,7 +4,8 @@ const router = new express.Router();
 
 const { 
   createRecipeController, 
-  readRecipeController, 
+  readRecipeController,
+  readRecipesController, 
   updateRecipeController, 
   deleteRecipeController } = require('../controllers/recipeController');
 
@@ -14,6 +15,7 @@ const upload = multer({
 
 router.post('/recipe', upload.single('image'), createRecipeController);
 router.get('/recipe/:recipeId', readRecipeController);
+router.get('/recipes', readRecipesController);
 router.patch('/recipe/:recipeId', updateRecipeController);
 router.delete('/recipe/:recipeId', deleteRecipeController);
 

@@ -4,8 +4,6 @@ const Recipe = require('../models/recipeModel');
 const logger = require('../utils/loggers');
 const { getRecipe } = require('./recipeScraperService');
 
-
-
 const createRecipe = async (recipeUrl) => {
 
   try {
@@ -41,6 +39,22 @@ const readRecipe = async (recipeId) => {
     throw error;
   }
 
+}
+
+const readRecipes = async (page, pageSize) => {
+  try {
+    const recipes = await Recipe.find({})
+      .limit(page)
+      .skip(pageSize)
+      .exec();
+
+    const total = await Recipe.countDocuments();
+
+    return { recipes, total };
+  } catch (error) {
+    logger.error(`Error reading recipes: ${error.message}`);
+    throw error;
+  }
 }
 
 const updateRecipe = async (recipeId, updates) => {
@@ -92,6 +106,7 @@ const deleteRecipe = async (recipeId) => {
 module.exports = {
   createRecipe,
   readRecipe,
+  readRecipes,
   updateRecipe,
   deleteRecipe
 }

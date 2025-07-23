@@ -1,4 +1,10 @@
-const { createRecipe, readRecipe, updateRecipe, deleteRecipe } = require('../services/recipeService');
+const { 
+  createRecipe, 
+  readRecipe,
+  readRecipes, 
+  updateRecipe, 
+  deleteRecipe 
+} = require('../services/recipeService');
 const logger = require('../utils/loggers');
 
 const createRecipeController = async (req, res) => {
@@ -43,6 +49,29 @@ const readRecipeController = async (req, res) => {
     res.status(500).send(`Error reading recipe: ${error.message}`);
   }
 
+}
+
+const readRecipesController = async(req, res) => {
+  const page = Number.parseInt(req.query.page);
+  const pageSize = Number.parseInt(req.query.pageSize);
+
+  if(!page) {
+    return res.status(400).send('Page is required');
+  }
+
+  if(!pageSize) {
+    return res.status(400).send('Page size is required');
+  }
+
+  logger.info(`RecipeController received a recipes request for page: ${page} and page size: ${pageSize}`);
+
+  try {
+    const recipes = await readRecipes(page, pageSize);
+    res.send(recipes);
+
+  } catch (error) {
+    res.status(500).send(`Error reading recipe: ${error.message}`);
+  }
 }
 
 const updateRecipeController = async (req, res) => {
@@ -93,6 +122,7 @@ const deleteRecipeController = async (req, res) => {
 module.exports = {
   createRecipeController,
   readRecipeController,
+  readRecipesController,
   updateRecipeController,
   deleteRecipeController
 }
