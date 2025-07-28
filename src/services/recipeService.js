@@ -46,7 +46,7 @@ const readRecipes = async (page, pageSize) => {
     const skip = (page - 1) * pageSize;
 
     const recipes = await Recipe.find({})
-      .select('title description image')
+      .select('title description image rating')
       .skip(skip)
       .limit(pageSize)
       .exec();
