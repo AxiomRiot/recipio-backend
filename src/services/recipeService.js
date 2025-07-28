@@ -43,9 +43,11 @@ const readRecipe = async (recipeId) => {
 
 const readRecipes = async (page, pageSize) => {
   try {
+    const skip = (page - 1) * pageSize;
+
     const recipes = await Recipe.find({})
-      .limit(page)
-      .skip(pageSize)
+      .skip(skip)
+      .limit(pageSize)
       .exec();
 
     const total = await Recipe.countDocuments();
