@@ -17,8 +17,9 @@ async function downloadImage(imageUrl, url) {
       throw new Error(`Invalid URL provided for image download: ${imageUrl}`);
     }
 
-    if (!isValidUrl(url)) {
-      throw new Error(`Invalid URL provided for image download: ${url}`);
+    // second param is optional — validate only if provided
+    if (url && !isValidUrl(url)) {
+      throw new Error(`Invalid referer URL provided for image download: ${url}`);
     }
 
     logger.info(`Downloading image from src: ${imageUrl}`);
@@ -27,14 +28,22 @@ async function downloadImage(imageUrl, url) {
       url: imageUrl,
       method: 'GET',
       responseType: 'arraybuffer',
+      validateStatus: null, // we'll handle status explicitly
     });
 
-    const buffer = Buffer.from(response.data);
-    const base64Image = buffer.toString('base64'); // Convert buffer to Base64 string
+    if (!response || response.status !== 200) {
+      throw new Error(`Image download failed. status=${response && response.status}`);
+    }
 
-    return base64Image;
+    const buffer = Buffer.from(response.data, 'binary');
+    const contentType = response.headers['content-type'] || 'image/jpeg';
+    const base64Image = buffer.toString('base64');
+
+    // Return a proper data URI the frontend can use directly in an <img src="...">
+    return `data:${contentType};base64,${base64Image}`;
   } catch (e) {
-    logger.error(`Failed to download image: ${e}`);
+    logger.error(`Failed to download image: ${e.message || e}`);
+    throw e; // bubble error up so caller can handle it
   }
 }
 
