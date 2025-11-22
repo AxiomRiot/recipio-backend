@@ -24,7 +24,7 @@ async function scrapeWebsite(url) {
       minutes: $('.wprm-recipe-cook_time-minutes').text()
     };
 
-    const imageUrl = $('.wprm-recipe-image img').attr('data-src');
+    const imageUrl = $('.wp-block-image img').attr('src');
     const image = await downloadImage(imageUrl, url);
 
     const recipe = {
