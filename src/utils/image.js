@@ -21,12 +21,10 @@ async function downloadImage(imageUrl, url) {
       throw new Error(`Invalid URL provided for image download: ${url}`);
     }
 
-    const absoluteImageUrl = isValidUrl(imageUrl) ? imageUrl : new URL(imageUrl, baseUrl).href;
-
-    logger.info(`Downloading image from src: ${absoluteImageUrl}`);
+    logger.info(`Downloading image from src: ${imageUrl}`);
 
     const response = await axios({
-      url: absoluteImageUrl,
+      url: imageUrl,
       method: 'GET',
       responseType: 'arraybuffer',
     });
