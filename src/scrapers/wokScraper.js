@@ -25,7 +25,7 @@ async function scrapeWebsite(url) {
     };
 
     //Replace the 200px image size with the 500px
-    const imageUrl = $('.wprm-recipe-image img').attr('data-src').replace('200', '500');
+    const imageUrl = $('.wprm-recipe-image img').attr('data-src').replaceAll('200', '500');
 
     const image = await downloadImage(imageUrl, url);
 
